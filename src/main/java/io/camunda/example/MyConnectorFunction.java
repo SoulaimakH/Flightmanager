@@ -11,11 +11,12 @@ import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
 import java.util.Arrays;
+import java.util.Date;
 
 @OutboundConnector(
     name = "MYCONNECTOR",
-    inputVariables = {"textfield_wqrvmq","select_p3yizl","select_nx568m","select_iqhp1x9","select_nx568m","select_iqhp1x9","select_34utwf","select_0obapg","datetime_twftp","datetime_l9yxf"},
-    type = "FormVar")
+    inputVariables = {"id","type","start","end"},
+    type = "request")
 @ElementTemplate(
     id = "io.camunda.connector.Template.v1",
     name = "Template connector",
@@ -41,21 +42,13 @@ public class MyConnectorFunction implements OutboundConnectorFunction {
   private MyConnectorResult executeConnector(final MyConnectorRequest connectorRequest) {
     // TODO: implement connector logic
     LOGGER.info("Executing my connector with request {}", connectorRequest);
-    String message = connectorRequest.Flight_id();
-    String m1 = connectorRequest.v1();
-    String m2 = connectorRequest.v2();
-    String m3 = connectorRequest.v3();
-    String m4 = connectorRequest.v4();
-    String m5 = connectorRequest.v5();
-    String m6 = connectorRequest.v6();
-    String m7 = connectorRequest.v7();
-    String d1 = connectorRequest.date1();
-    String d2 = connectorRequest.date2();
-
-
+    int id = connectorRequest.id();
+    String type = connectorRequest.type();
+    Date start = connectorRequest.start();
+    Date end = connectorRequest.end();
 
 
     //String m= Arrays.toString(message);
-    return new MyConnectorResult("Message received: id:" + message+" v1:"+m1+" v2"+m2+" v4"+m2+" v5"+m5+" v6");
+    return new MyConnectorResult("Message received:");
   }
 }
