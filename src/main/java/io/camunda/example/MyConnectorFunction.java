@@ -1,7 +1,6 @@
 package io.camunda.example;
 
 import io.camunda.connector.api.annotation.OutboundConnector;
-import io.camunda.connector.api.error.ConnectorException;
 import io.camunda.connector.api.outbound.OutboundConnectorContext;
 import io.camunda.connector.api.outbound.OutboundConnectorFunction;
 import io.camunda.connector.generator.annotation.ElementTemplate;
@@ -9,6 +8,7 @@ import io.camunda.example.dto.MyConnectorRequest;
 import io.camunda.example.dto.MyConnectorResult;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
+import org.springframework.web.client.RestTemplate;
 
 import java.util.Arrays;
 import java.util.Date;
@@ -47,8 +47,14 @@ public class MyConnectorFunction implements OutboundConnectorFunction {
     Date start = connectorRequest.start();
     Date end = connectorRequest.end();
 
+    String uri = "http://localhost:8081/api/Employees/"+id;
+    RestTemplate restTemplate = new RestTemplate();
+
+    Employee emp = restTemplate.getForObject(uri, Employee.class);
+    System.out.println(emp.toString());
+    System.getLogger(emp.toString());
 
     //String m= Arrays.toString(message);
-    return new MyConnectorResult("Message received:");
+    return new MyConnectorResult("" + emp.getVacDays().get(0));
   }
 }

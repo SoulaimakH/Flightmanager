@@ -10,8 +10,8 @@ import java.util.Date;
 import java.util.List;
 
 public record MyConnectorRequest(
-    @NotEmpty @TemplateProperty(group = "compose", type = PropertyType.Text , label = "id") int id,
-    @NotEmpty @TemplateProperty(group = "compose", type = PropertyType.Text , label = "type") String type ,
-    @NotEmpty @TemplateProperty(group = "compose", type = PropertyType.Text , label = "start") Date start,
-    @NotEmpty @TemplateProperty(group = "compose", type = PropertyType.Text , label = "end") Date end
+    @TemplateProperty(group = "compose", type = PropertyType.Text , label = "id") int id,
+    @TemplateProperty(group = "compose", type = PropertyType.Text , label = "type") String type ,
+    @TemplateProperty(group = "compose", type = PropertyType.Text , label = "start") Date start,
+    @TemplateProperty(group = "compose", type = PropertyType.Text , label = "end") Date end
     ) {};
